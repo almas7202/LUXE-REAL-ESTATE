@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: auto; }
+
+body {
+  background: #0a0a0f;
+  color: #fafafa;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Custom Cursor */
+.cursor {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: #c9a96e;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, background 0.3s;
+  mix-blend-mode: difference;
+}
+
+.cursor-follower {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(201, 169, 110, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s, height 0.4s;
+}
+
+body:has(a:hover) .cursor,
+body:has(button:hover) .cursor {
+  width: 20px;
+  height: 20px;
+}
+
+/* Gold line divider */
+.gold-line {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, #c9a96e, #e4b97a);
+  display: inline-block;
+}
+
+/* Section label style */
+.section-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #c9a96e;
+}
+
+/* Clip word for text reveal */
+.clip-word {
+  overflow: hidden;
+  display: inline-block;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0a0a0f; }
+::-webkit-scrollbar-thumb { background: #c9a96e; border-radius: 2px; }
+
+/* Split text chars */
+.char-wrap { display: inline-block; overflow: hidden; vertical-align: bottom; }
+.char { display: inline-block; will-change: transform; }
+
+/* Clip-path image reveal */
+.img-clip { clip-path: inset(100% 0% 0% 0%); }
+
+/* Line mask — inline-block keeps words on same line */
+.line-wrap { overflow: hidden; display: inline-block; vertical-align: bottom; }
+.line { display: block; }
+
+/* Hover gold underline */
+.hover-line {
+  position: relative;
+  display: inline-block;
+}
+.hover-line::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #c9a96e;
+  transition: width 0.4s ease;
+}
+.hover-line:hover::after { width: 100%; }
+
+/* Image pan */
+.img-pan { transition: transform 8s ease; }
+.img-pan:hover { transform: scale(1.08); }
